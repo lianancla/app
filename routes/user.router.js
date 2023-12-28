@@ -6,7 +6,7 @@ import { Controller } from "../controllers/controller.js";
 import { prisma } from "../database.js";
 
 const ctrl = new Controller({ model: prisma.user});
-const userController = ctrl.r()
+const userController = ctrl.getAll().getById()
 UserRouter.get("/", userController.getAll);
 UserRouter.get("/:id", userController.getById);
 

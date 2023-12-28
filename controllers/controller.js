@@ -6,13 +6,15 @@ export class Controller {
       (this.response = new Response());
   }
 
-  r() {
+  getAll() {
     this.getAll = async (req, res) => {
       const response = new Response(await this.model.getAll());
       if (response.error) res.status(404).json({ message: response.error });
       res.json(response.data);
     };
-
+return this
+  }
+  getById(){
     this.getById = async (req, res) => {
       const id = parseInt(req.params.id);
       const response = new Response(await this.model.getById({ id }));
