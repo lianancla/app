@@ -1,6 +1,12 @@
 import { Router } from "express";
-import { UserController } from "../controllers/user.controller.js";
-export  const UserRouter  = Router();
+export const UserRouter = Router();
 
-UserRouter.get("/",UserController.getUsers)
-UserRouter.get("/:id",UserController.getUserById)
+
+import { Controller } from "../controllers/controller.js";
+import { prisma } from "../database.js";
+
+const ctrl = new Controller({ model: prisma.user});
+const userController = ctrl.r()
+UserRouter.get("/", userController.getAll);
+UserRouter.get("/:id", userController.getById);
+

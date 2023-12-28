@@ -1,9 +1,11 @@
 import { app } from "./app.js";
-import { prisma } from "./database.js";
-import { User } from "./models/user.model.js";
+import { UserRouter } from "./routes/user.router.js";
+
+
 
 app.listen(app.get("PORT"), (req, res) => {
   console.log("Server montado en el puerto" + app.get("PORT"));
 });
 
 
+app.use("/users",UserRouter)
