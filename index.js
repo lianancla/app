@@ -9,3 +9,6 @@ app.listen(app.get("PORT"), (req, res) => {
 
 
 app.use("/users",userRouter)
+import { userValidator } from "./validations/user.validator.js";
+
+console.log(userValidator)

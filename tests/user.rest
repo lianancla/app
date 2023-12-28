@@ -4,26 +4,26 @@ GET http://localhost:3000/users
 
 ###get a user by id
 
-GET http://localhost:3000/users/2
+GET http://localhost:3000/users/4
 
 ###create a user
 POST  http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "name":"pepapig",
-    "email":"pepe@gmail.com",
+    "name":"pototo",
+    "email":"pototo@gmail.com",
     "password":"123456789"
 }
 ### update a user
-PUT   http://localhost:3000/users/3
+PUT   http://localhost:3000/users/6
 Content-Type: application/json
 
 {
     "name":"pepaPig",
-    "email":"pepe@gmail.com",
+    "email":"juan@gmail.com",
     "password":"123456789"
 }
 ### delete a user
-DELETE  http://localhost:3000/users/2
+DELETE  http://localhost:3000/users/6
 

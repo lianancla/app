@@ -1,7 +1,8 @@
 import { Response } from "../helpers/response.js";
 export class Controller {
-  constructor({ model }) {
+  constructor({ model, validator }) {
     this.model = model;
+    this.validator = validator;
   }
 
   //getAll
@@ -26,8 +27,11 @@ export class Controller {
   //create
   create() {
     this.create = async (req, res) => {
+      const validatedData = await this.validator.validate({ object: req.body });
+      if (validatedData.error)
+        res.status(404).josn({ mensaje: validatedData.error });
       const response = new Response(
-        await this.model.create({ data: req.body })
+        await this.model.create({ data: validatedData.data })
       );
       if (response.error) res.status(404).json({ message: response.error });
       res.json(response.data);
@@ -37,9 +41,15 @@ export class Controller {
   //update
   update() {
     this.update = async (req, res) => {
+      const validatedData = await this.validator.validatePartial({
+        object: req.body,
+      });
+      if (validatedData.error)
+        res.status(404).josn({ mensaje: validatedData.error });
+
       const response = new Response(
         await this.model.update({
-          data: req.body,
+          data: validatedData.data,
           id: parseInt(req.params.id),
         })
       );
