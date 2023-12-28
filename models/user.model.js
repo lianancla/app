@@ -1,7 +1,10 @@
 import { PrismaModel } from "./prisma.model.js";
 import { UserInstance } from "./userInstance.js";
+import { prisma } from "../database.js";
+import { Response } from "../helpers/response.js";
 
-export class User extends PrismaModel {
+
+class User extends PrismaModel {
   constructor({ model, response }) {
     super({ model, response });
   }
@@ -10,3 +13,4 @@ export class User extends PrismaModel {
     return new UserInstance({ data });
   }
 }
+export const userModel = new User({ model: prisma.user, response: new Response() });
