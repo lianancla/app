@@ -1,5 +1,5 @@
 import { app } from "./app.js";
-import { UserRouter } from "./routes/user.router.js";
+import { userRouter } from "./routes/user.router.js";
 
 
 
@@ -8,4 +8,4 @@ app.listen(app.get("PORT"), (req, res) => {
 });
 
 
-app.use("/users",UserRouter)
+app.use("/users",userRouter)

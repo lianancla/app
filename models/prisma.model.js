@@ -9,6 +9,7 @@ export class PrismaModel {
       this.response.data = await this.model.findMany();
     } catch (error) {
       this.response.error = error;
+      await this.response.send_error();
     }
     return this.response;
   }
@@ -19,6 +20,7 @@ export class PrismaModel {
       });
     } catch (error) {
       this.response.error = error;
+      await this.response.send_error();
     }
 
     return this.response;
@@ -29,6 +31,7 @@ export class PrismaModel {
       this.response.data = await this.model.create({ data });
     } catch (error) {
       this.response.error = error;
+      await this.response.send_error();
     }
     return this.response;
   }
@@ -40,6 +43,7 @@ export class PrismaModel {
       });
     } catch (error) {
       this.response.error = error;
+      await this.response.send_error();
     }
     return this.response;
   }
@@ -48,7 +52,8 @@ export class PrismaModel {
       this.response = await this.model.delete({ where: { id } });
     } catch (error) {
       this.response.error = error;
+      await this.response.send_error();
     }
-    return response;
+    return this.response;
   }
 }
