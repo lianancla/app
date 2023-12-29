@@ -1,6 +1,4 @@
 import { app } from "./app.js";
-import { userRouter } from "./routes/user.router.js";
-
 
 
 app.listen(app.get("PORT"), (req, res) => {
@@ -8,7 +6,9 @@ app.listen(app.get("PORT"), (req, res) => {
 });
 
 
-app.use("/users",userRouter)
-import { userValidator } from "./validations/user.validator.js";
 
-console.log(userValidator)
+
+
+
+
+console.log("app");

@@ -1,16 +1,26 @@
 import { PrismaModel } from "./prisma.model.js";
 import { UserInstance } from "./userInstance.js";
-import { prisma } from "../database.js";
-import { Response } from "../helpers/response.js";
 
-
-class User extends PrismaModel {
+export class User extends PrismaModel {
   constructor({ model, response }) {
     super({ model, response });
   }
-
-  static makeInstance({ data }) {
-    return new UserInstance({ data });
+  /*
+  makeInstance({data , makeResponse}) {
+    return new UserInstance({ data , makeResponse });
   }
+  static async getUserByEmail({ email }) {
+    try {
+      this.response.data = await this.model.findFirst({
+        where: { email },
+      });
+    } catch (error) {
+      this.response.error = error;
+      await this.response.send_error();
+    }
+
+    return this.response;
+  }
+  */
 }
-export const userModel = new User({ model: prisma.user, response: new Response() });
+

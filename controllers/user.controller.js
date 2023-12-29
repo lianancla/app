@@ -1,21 +1,31 @@
 import { Controller } from "./controller.js";
-import { userModel } from "../models/user.model.js";
-import { userValidator } from "../validations/user.validator.js";
-export class UserController extends Controller {
-  constructor({ model, validator }) {
-    super({ model, validator });
-  }
-  sayHola() {
-    console.log("hola");
-  }
-}
 
-export const userController = new UserController({
-  model: userModel,
-  validator: userValidator,
-})
-  .getAll()
-  .getById()
-  .create()
-  .update()
-  .delete();
+export class UserController extends Controller {
+  constructor({ model, validator, makeResponse }){
+    super({ model, validator, makeResponse });
+  }
+/*
+  register(){
+    register = async (req, res) => {
+      const validatedData = await this.validator.validate({ object: req.body });
+      if (validatedData.error)
+        res.status(404).json({ mensaje: validatedData.error });
+  
+      const response = this.makeResponse(
+        await this.model.makeInstance({ data: validatedData.data }).save()
+      );
+      if (response.error) res.status(404).json({ message: response.error });
+  
+      let newUser = response.data;
+  
+      const newResponse = this.makeResponse(await newUser.register());
+  
+      console.log({ "response after register": newResponse.data });
+      if (newResponse.error) res.status(404).json({ message: newResponse.error });
+  
+      return newResponse.data;
+    };
+    return this;
+  }
+  */
+}
