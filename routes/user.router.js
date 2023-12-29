@@ -1,8 +1,12 @@
-import { userRouter } from "../UserObjects.js";
-const { router, controller } = userRouter;
+import { Router } from "express";
 
-router.get("/", controller.getAll);
-router.get("/:id", controller.getById);
-router.post("/", controller.create);
-router.put("/:id", controller.update);
-router.delete("/:id", controller.delete);
+import { userController } from "../UserObjects.js";
+export const userRouter = Router();
+
+userRouter.get("/", userController.getAll);
+userRouter.get("/:id", userController.getById);
+userRouter.post("/", userController.create);
+userRouter.put("/:id", userController.update);
+userRouter.delete("/:id", userController.delete);
+
+

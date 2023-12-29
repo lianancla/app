@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
-import { userRouter } from "./UserObjects.js";
+import { userRouter } from "./routes/user.router.js";
+
 config();
 export const app = express();
 
@@ -12,7 +13,8 @@ app.use(cors());
 //variables
 
 app.set("PORT", process.env.PORT);
-app.set("secret_key",process.env.SECRET_KEY_APP)
+app.set("secret_key", process.env.SECRET_KEY_APP);
 //routes
-app.use("/users", userRouter.router);
 
+
+app.use("/users",userRouter)

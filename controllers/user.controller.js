@@ -4,8 +4,8 @@ export class UserController extends Controller {
   constructor({ model, validator, makeResponse }){
     super({ model, validator, makeResponse });
   }
-/*
-  register(){
+
+  register() {
     register = async (req, res) => {
       const validatedData = await this.validator.validate({ object: req.body });
       if (validatedData.error)
@@ -27,5 +27,5 @@ export class UserController extends Controller {
     };
     return this;
   }
-  */
+  
 }

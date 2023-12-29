@@ -1,17 +1,21 @@
+
+
 export class PrismaModel {
-  constructor({ model, response }) {
+  constructor({ model, response , DB_Errors }) {
     this.model = model;
     this.response= response;
+    this.DB_Errors = DB_Errors
   }
 
   async getAll() {
     try {
       this.response.data = await this.model.findMany();
     } catch (error) {
-      this.response.error = error;
-      this.response.send_error();
+      this.response.send_error({error});
+      this.response.error = this.DB_Errors.getAll;
+  
     }
-    console.log({"model":this.response})
+   
     return this.response;
   }
   async getById({ id }) {
@@ -20,8 +24,8 @@ export class PrismaModel {
         where: { id },
       });
     } catch (error) {
-      this.response.error = error;
-      this.response.send_error();
+      this.response.send_error({error});
+      this.response.error = this.DB_Errors.getById;
     }
 
     return this.response;
@@ -31,8 +35,8 @@ export class PrismaModel {
     try {
       this.response.data = await this.model.create({ data });
     } catch (error) {
-      this.response.error = error;
-      this.response.send_error();
+      this.response.send_error({error});
+      this.response.error = this.DB_Errors.create;
     }
     return this.response;
   }
@@ -43,8 +47,8 @@ export class PrismaModel {
         data,
       });
     } catch (error) {
-      this.response.error = error;
-      this.response.send_error();
+      this.response.send_error({error});
+      this.response.error = this.DB_Errors.update;
     }
     return this.response;
   }
@@ -52,8 +56,8 @@ export class PrismaModel {
     try {
       this.response = await this.model.delete({ where: { id } });
     } catch (error) {
-      this.response.error = error;
-      this.response.send_error();
+      this.response.send_error({error});
+      this.response.error = this.DB_Errors.delete;
     }
     return this.response;
   }
